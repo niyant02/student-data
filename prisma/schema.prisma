@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["groupBy", "createMany", "orderByRelation", "napi"]
+}
+
+model Course {
+  id        Int       @id @default(autoincrement())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+  student   Student?  @relation(fields: [studentId], references: [id])
+  studentId Int?
+}
+
+model Professor {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+  student   Student?  @relation(fields: [studentId], references: [id])
+  studentId Int?
+}
+
+model Student {
+  id        Int         @id @default(autoincrement())
+  name      String
+  email     String?
+  courses   Course[]
+  professor Professor[]
+  sex       Sex?
+  gradute   Graduate?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime?
+}
+
+enum Graduate {
+  Undergraduate
+  Graduate
+}
+
+enum Sex {
+  Male
+  Female
+  Other
+}
