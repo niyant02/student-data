@@ -5,7 +5,6 @@ export const Course = objectType({
   definition(t) {
     t.model.id();
     t.model.name();
-    t.model.studentId();
     t.model.student({
       type: "Student",
     });

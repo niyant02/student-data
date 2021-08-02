@@ -4,11 +4,14 @@ export const Student = objectType({
   name: "Student",
   definition(t) {
     t.model.id();
-    t.model.name();
+    t.model.firstName();
+    t.model.lastName();
     t.model.email();
+    t.model.courseId();
     t.model.courses({
       type: "Course",
     });
+    t.model.professorId();
     t.model.professor({
       type: "Professor",
     });

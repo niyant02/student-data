@@ -46,17 +46,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  CourseListRelationFilter: { // input type
-    every?: NexusGenInputs['CourseWhereInput'] | null; // CourseWhereInput
-    none?: NexusGenInputs['CourseWhereInput'] | null; // CourseWhereInput
-    some?: NexusGenInputs['CourseWhereInput'] | null; // CourseWhereInput
-  }
   CourseOrderByInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    student?: NexusGenInputs['StudentOrderByInput'] | null; // StudentOrderByInput
-    studentId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   CourseWhereInput: { // input type
@@ -66,8 +59,7 @@ export interface NexusGenInputs {
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    student?: NexusGenInputs['StudentWhereInput'] | null; // StudentWhereInput
-    studentId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    student?: NexusGenInputs['StudentListRelationFilter'] | null; // StudentListRelationFilter
     updatedAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
   }
   CourseWhereUniqueInput: { // input type
@@ -203,18 +195,11 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
-  ProfessorListRelationFilter: { // input type
-    every?: NexusGenInputs['ProfessorWhereInput'] | null; // ProfessorWhereInput
-    none?: NexusGenInputs['ProfessorWhereInput'] | null; // ProfessorWhereInput
-    some?: NexusGenInputs['ProfessorWhereInput'] | null; // ProfessorWhereInput
-  }
   ProfessorOrderByInput: { // input type
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     name?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    student?: NexusGenInputs['StudentOrderByInput'] | null; // StudentOrderByInput
-    studentId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   ProfessorWhereInput: { // input type
@@ -225,8 +210,7 @@ export interface NexusGenInputs {
     email?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    student?: NexusGenInputs['StudentWhereInput'] | null; // StudentWhereInput
-    studentId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    student?: NexusGenInputs['StudentListRelationFilter'] | null; // StudentListRelationFilter
     updatedAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
   }
   ProfessorWhereUniqueInput: { // input type
@@ -258,12 +242,22 @@ export interface NexusGenInputs {
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
   }
+  StudentListRelationFilter: { // input type
+    every?: NexusGenInputs['StudentWhereInput'] | null; // StudentWhereInput
+    none?: NexusGenInputs['StudentWhereInput'] | null; // StudentWhereInput
+    some?: NexusGenInputs['StudentWhereInput'] | null; // StudentWhereInput
+  }
   StudentOrderByInput: { // input type
+    courseId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    courses?: NexusGenInputs['CourseOrderByInput'] | null; // CourseOrderByInput
     createdAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
     email?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    firstName?: NexusGenEnums['SortOrder'] | null; // SortOrder
     gradute?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    name?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    lastName?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    professor?: NexusGenInputs['ProfessorOrderByInput'] | null; // ProfessorOrderByInput
+    professorId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     sex?: NexusGenEnums['SortOrder'] | null; // SortOrder
     updatedAt?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
@@ -271,13 +265,16 @@ export interface NexusGenInputs {
     AND?: NexusGenInputs['StudentWhereInput'][] | null; // [StudentWhereInput!]
     NOT?: NexusGenInputs['StudentWhereInput'][] | null; // [StudentWhereInput!]
     OR?: NexusGenInputs['StudentWhereInput'][] | null; // [StudentWhereInput!]
-    courses?: NexusGenInputs['CourseListRelationFilter'] | null; // CourseListRelationFilter
+    courseId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
+    courses?: NexusGenInputs['CourseWhereInput'] | null; // CourseWhereInput
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     email?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
+    firstName?: NexusGenInputs['StringFilter'] | null; // StringFilter
     gradute?: NexusGenInputs['EnumGraduateNullableFilter'] | null; // EnumGraduateNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    name?: NexusGenInputs['StringFilter'] | null; // StringFilter
-    professor?: NexusGenInputs['ProfessorListRelationFilter'] | null; // ProfessorListRelationFilter
+    lastName?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    professor?: NexusGenInputs['ProfessorWhereInput'] | null; // ProfessorWhereInput
+    professorId?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
     sex?: NexusGenInputs['EnumSexNullableFilter'] | null; // EnumSexNullableFilter
     updatedAt?: NexusGenInputs['DateTimeNullableFilter'] | null; // DateTimeNullableFilter
   }
@@ -326,8 +323,7 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     id: number; // Int!
     name: string; // String!
-    student: NexusGenRootTypes['Student'] | null; // Student
-    studentId: number | null; // Int
+    student: NexusGenRootTypes['Student'][]; // [Student!]!
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
   Professor: { // field return type
@@ -335,8 +331,7 @@ export interface NexusGenFieldTypes {
     email: string | null; // String
     id: number; // Int!
     name: string; // String!
-    student: NexusGenRootTypes['Student'] | null; // Student
-    studentId: number | null; // Int
+    student: NexusGenRootTypes['Student'][]; // [Student!]!
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
   Query: { // field return type
@@ -348,13 +343,16 @@ export interface NexusGenFieldTypes {
     students: NexusGenRootTypes['Student'][]; // [Student!]!
   }
   Student: { // field return type
-    courses: NexusGenRootTypes['Course'][]; // [Course!]!
+    courseId: number | null; // Int
+    courses: NexusGenRootTypes['Course'] | null; // Course
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     email: string | null; // String
+    firstName: string; // String!
     gradute: NexusGenEnums['Graduate'] | null; // Graduate
     id: number; // Int!
-    name: string; // String!
-    professor: NexusGenRootTypes['Professor'][]; // [Professor!]!
+    lastName: string; // String!
+    professor: NexusGenRootTypes['Professor'] | null; // Professor
+    professorId: number | null; // Int
     sex: NexusGenScalars['Sex'] | null; // Sex
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -366,7 +364,6 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     name: 'String'
     student: 'Student'
-    studentId: 'Int'
     updatedAt: 'DateTime'
   }
   Professor: { // field return type name
@@ -375,7 +372,6 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     name: 'String'
     student: 'Student'
-    studentId: 'Int'
     updatedAt: 'DateTime'
   }
   Query: { // field return type name
@@ -387,19 +383,38 @@ export interface NexusGenFieldTypeNames {
     students: 'Student'
   }
   Student: { // field return type name
+    courseId: 'Int'
     courses: 'Course'
     createdAt: 'DateTime'
     email: 'String'
+    firstName: 'String'
     gradute: 'Graduate'
     id: 'Int'
-    name: 'String'
+    lastName: 'String'
     professor: 'Professor'
+    professorId: 'Int'
     sex: 'Sex'
     updatedAt: 'DateTime'
   }
 }
 
 export interface NexusGenArgTypes {
+  Course: {
+    student: { // args
+      after?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      before?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
+  Professor: {
+    student: { // args
+      after?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      before?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+    }
+  }
   Query: {
     course: { // args
       where: NexusGenInputs['CourseWhereUniqueInput']; // CourseWhereUniqueInput!
@@ -433,20 +448,6 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
       orderBy?: NexusGenInputs['StudentOrderByInput'][] | null; // [StudentOrderByInput!]
       where?: NexusGenInputs['StudentWhereInput'] | null; // StudentWhereInput
-    }
-  }
-  Student: {
-    courses: { // args
-      after?: NexusGenInputs['CourseWhereUniqueInput'] | null; // CourseWhereUniqueInput
-      before?: NexusGenInputs['CourseWhereUniqueInput'] | null; // CourseWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-    }
-    professor: { // args
-      after?: NexusGenInputs['ProfessorWhereUniqueInput'] | null; // ProfessorWhereUniqueInput
-      before?: NexusGenInputs['ProfessorWhereUniqueInput'] | null; // ProfessorWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
     }
   }
 }

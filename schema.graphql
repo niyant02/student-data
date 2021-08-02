@@ -6,23 +6,14 @@ type Course {
   createdAt: DateTime
   id: Int!
   name: String!
-  student: Student
-  studentId: Int
+  student(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int): [Student!]!
   updatedAt: DateTime
-}
-
-input CourseListRelationFilter {
-  every: CourseWhereInput
-  none: CourseWhereInput
-  some: CourseWhereInput
 }
 
 input CourseOrderByInput {
   createdAt: SortOrder
   id: SortOrder
   name: SortOrder
-  student: StudentOrderByInput
-  studentId: SortOrder
   updatedAt: SortOrder
 }
 
@@ -33,8 +24,7 @@ input CourseWhereInput {
   createdAt: DateTimeFilter
   id: IntFilter
   name: StringFilter
-  student: StudentWhereInput
-  studentId: IntNullableFilter
+  student: StudentListRelationFilter
   updatedAt: DateTimeNullableFilter
 }
 
@@ -213,15 +203,8 @@ type Professor {
   email: String
   id: Int!
   name: String!
-  student: Student
-  studentId: Int
+  student(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int): [Student!]!
   updatedAt: DateTime
-}
-
-input ProfessorListRelationFilter {
-  every: ProfessorWhereInput
-  none: ProfessorWhereInput
-  some: ProfessorWhereInput
 }
 
 input ProfessorOrderByInput {
@@ -229,8 +212,6 @@ input ProfessorOrderByInput {
   email: SortOrder
   id: SortOrder
   name: SortOrder
-  student: StudentOrderByInput
-  studentId: SortOrder
   updatedAt: SortOrder
 }
 
@@ -242,8 +223,7 @@ input ProfessorWhereInput {
   email: StringNullableFilter
   id: IntFilter
   name: StringFilter
-  student: StudentWhereInput
-  studentId: IntNullableFilter
+  student: StudentListRelationFilter
   updatedAt: DateTimeNullableFilter
 }
 
@@ -296,23 +276,37 @@ input StringNullableFilter {
 }
 
 type Student {
-  courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int): [Course!]!
+  courseId: Int
+  courses: Course
   createdAt: DateTime
   email: String
+  firstName: String!
   gradute: Graduate
   id: Int!
-  name: String!
-  professor(after: ProfessorWhereUniqueInput, before: ProfessorWhereUniqueInput, first: Int, last: Int): [Professor!]!
+  lastName: String!
+  professor: Professor
+  professorId: Int
   sex: Sex
   updatedAt: DateTime
 }
 
+input StudentListRelationFilter {
+  every: StudentWhereInput
+  none: StudentWhereInput
+  some: StudentWhereInput
+}
+
 input StudentOrderByInput {
+  courseId: SortOrder
+  courses: CourseOrderByInput
   createdAt: SortOrder
   email: SortOrder
+  firstName: SortOrder
   gradute: SortOrder
   id: SortOrder
-  name: SortOrder
+  lastName: SortOrder
+  professor: ProfessorOrderByInput
+  professorId: SortOrder
   sex: SortOrder
   updatedAt: SortOrder
 }
@@ -321,13 +315,16 @@ input StudentWhereInput {
   AND: [StudentWhereInput!]
   NOT: [StudentWhereInput!]
   OR: [StudentWhereInput!]
-  courses: CourseListRelationFilter
+  courseId: IntNullableFilter
+  courses: CourseWhereInput
   createdAt: DateTimeFilter
   email: StringNullableFilter
+  firstName: StringFilter
   gradute: EnumGraduateNullableFilter
   id: IntFilter
-  name: StringFilter
-  professor: ProfessorListRelationFilter
+  lastName: StringFilter
+  professor: ProfessorWhereInput
+  professorId: IntNullableFilter
   sex: EnumSexNullableFilter
   updatedAt: DateTimeNullableFilter
 }

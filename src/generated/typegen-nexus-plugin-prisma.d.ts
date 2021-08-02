@@ -23,33 +23,32 @@ interface PrismaModels {
 interface NexusPrismaInputs {
   Query: {
     courses: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'createdAt' | 'updatedAt' | 'student' | 'studentId'
-      ordering: 'id' | 'name' | 'createdAt' | 'updatedAt' | 'student' | 'studentId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'createdAt' | 'updatedAt' | 'student'
+      ordering: 'id' | 'name' | 'createdAt' | 'updatedAt'
     }
     professors: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'email' | 'createdAt' | 'updatedAt' | 'student' | 'studentId'
-      ordering: 'id' | 'name' | 'email' | 'createdAt' | 'updatedAt' | 'student' | 'studentId'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'email' | 'createdAt' | 'updatedAt' | 'student'
+      ordering: 'id' | 'name' | 'email' | 'createdAt' | 'updatedAt'
     }
     students: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'email' | 'courses' | 'professor' | 'sex' | 'gradute' | 'createdAt' | 'updatedAt'
-      ordering: 'id' | 'name' | 'email' | 'sex' | 'gradute' | 'createdAt' | 'updatedAt'
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'firstName' | 'lastName' | 'email' | 'courseId' | 'courses' | 'professorId' | 'professor' | 'sex' | 'gradute' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'firstName' | 'lastName' | 'email' | 'courseId' | 'courses' | 'professorId' | 'professor' | 'sex' | 'gradute' | 'createdAt' | 'updatedAt'
     }
   },
   Course: {
-
+    student: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'firstName' | 'lastName' | 'email' | 'courseId' | 'courses' | 'professorId' | 'professor' | 'sex' | 'gradute' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'firstName' | 'lastName' | 'email' | 'courseId' | 'courses' | 'professorId' | 'professor' | 'sex' | 'gradute' | 'createdAt' | 'updatedAt'
+    }
   }
   Professor: {
-
+    student: {
+      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'firstName' | 'lastName' | 'email' | 'courseId' | 'courses' | 'professorId' | 'professor' | 'sex' | 'gradute' | 'createdAt' | 'updatedAt'
+      ordering: 'id' | 'firstName' | 'lastName' | 'email' | 'courseId' | 'courses' | 'professorId' | 'professor' | 'sex' | 'gradute' | 'createdAt' | 'updatedAt'
+    }
   }
   Student: {
-    courses: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'createdAt' | 'updatedAt' | 'student' | 'studentId'
-      ordering: 'id' | 'name' | 'createdAt' | 'updatedAt' | 'student' | 'studentId'
-    }
-    professor: {
-      filtering: 'AND' | 'OR' | 'NOT' | 'id' | 'name' | 'email' | 'createdAt' | 'updatedAt' | 'student' | 'studentId'
-      ordering: 'id' | 'name' | 'email' | 'createdAt' | 'updatedAt' | 'student' | 'studentId'
-    }
+
   }
 }
 
@@ -89,7 +88,6 @@ interface NexusPrismaOutputs {
     createdAt: 'DateTime'
     updatedAt: 'DateTime'
     student: 'Student'
-    studentId: 'Int'
   }
   Professor: {
     id: 'Int'
@@ -98,13 +96,15 @@ interface NexusPrismaOutputs {
     createdAt: 'DateTime'
     updatedAt: 'DateTime'
     student: 'Student'
-    studentId: 'Int'
   }
   Student: {
     id: 'Int'
-    name: 'String'
+    firstName: 'String'
+    lastName: 'String'
     email: 'String'
+    courseId: 'Int'
     courses: 'Course'
+    professorId: 'Int'
     professor: 'Professor'
     sex: 'Sex'
     gradute: 'Graduate'

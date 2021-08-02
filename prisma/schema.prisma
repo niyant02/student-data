@@ -16,8 +16,7 @@ model Course {
   name      String
   createdAt DateTime  @default(now())
   updatedAt DateTime?
-  student   Student?  @relation(fields: [studentId], references: [id])
-  studentId Int?
+  student   Student[]
 }
 
 model Professor {
@@ -26,20 +25,22 @@ model Professor {
   email     String?
   createdAt DateTime  @default(now())
   updatedAt DateTime?
-  student   Student?  @relation(fields: [studentId], references: [id])
-  studentId Int?
+  student   Student[]
 }
 
 model Student {
-  id        Int         @id @default(autoincrement())
-  name      String
-  email     String?
-  courses   Course[]
-  professor Professor[]
-  sex       Sex?
-  gradute   Graduate?
-  createdAt DateTime    @default(now())
-  updatedAt DateTime?
+  id          Int        @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String?
+  courseId    Int?
+  courses     Course?    @relation(fields: [courseId], references: [id])
+  professorId Int?
+  professor   Professor? @relation(fields: [professorId], references: [id])
+  sex         Sex?
+  gradute     Graduate?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime?
 }
 
 enum Graduate {

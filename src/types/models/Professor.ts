@@ -6,7 +6,6 @@ export const Professor = objectType({
     t.model.id();
     t.model.name();
     t.model.email();
-    t.model.studentId();
     t.model.student({
       type: "Student",
     });
